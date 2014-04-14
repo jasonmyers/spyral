@@ -248,9 +248,9 @@ class Rect(object):
         except TypeError:
             B = Rect(B)
 
-        if A._x >= B._x and A._x < (B._x + B._w):
+        if B._x <= A._x < (B._x + B._w):
             x = A._x
-        elif B._x >= A._x and B._x < (A._x + A._w):
+        elif A._x <= B._x < (A._x + A._w):
             x = B._x
         else:
             return Rect(A._x, A._y, 0, 0)
@@ -262,9 +262,9 @@ class Rect(object):
         else:
             return Rect(A._x, A._y, 0, 0)
 
-        if A._y >= B._y and A._y < (B._y + B._h):
+        if B._y <= A._y < (B._y + B._h):
             y = A._y
-        elif B._y >= A._y and B._y < (A._y + A._h):
+        elif A._y <= B._y < (A._y + A._h):
             y = B._y
         else:
             return Rect(A._x, A._y, 0, 0)
@@ -322,8 +322,8 @@ class Rect(object):
                   rect.
         """
         # This could probably be optimized as well
-        return point[0] > self.left and point[0] < self.right and \
-            point[1] > self.top and point[1] < self.bottom
+        return self.left < point[0] < self.right and \
+               self.top < point[1] < self.bottom
 
     def _to_pygame(self):
         """

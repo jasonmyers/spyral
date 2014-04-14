@@ -713,7 +713,7 @@ class TextInputWidget(BaseWidget):
             self._view_x += x
         if x+cursor_width > self.box_width:
             self._view_x += x + cursor_width - self.box_width
-        if self._view_x+self.box_width> max_width and max_width > self.box_width:
+        if self._view_x+self.box_width> max_width > self.box_width:
             self._view_x = max_width - self.box_width
         image = self._rendered_text.copy()
         image.crop((self._view_x, 0),
